@@ -1,14 +1,15 @@
-import { getServerSession } from "next-auth";
-import { authOptions } from "./utils/auth";
+"use client";
+import { SessionProvider } from "next-auth/react";
 import { Header } from "./components/header";
 import { Auth } from "./components/auth";
 
-export default async function Home() {
-  const session = await getServerSession(authOptions);
+export default function Home({ pageProps }) {
   return (
     <>
-      <Header />
-      <Auth />
+      <SessionProvider session={pageProps?.session}>
+        <Header />
+        <Auth />
+      </SessionProvider>
     </>
   );
 }
