@@ -1,8 +1,11 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Header = () => {
+  const { data: session, status } = useSession();
+  console.log(session);
+
   return (
     <>
       <header>
@@ -14,16 +17,22 @@ export const Header = () => {
               </span>
             </a>
             <div className="flex items-center lg:order-2">
-              <Button
-                onClick={() =>
-                  signIn("github", {
-                    callbackUrl: `${window.location.origin}`,
-                  })
-                }
-                variant="link"
-              >
-                Log in
-              </Button>
+              {!session ? (
+                <Button
+                  onClick={() =>
+                    signIn("github", {
+                      callbackUrl: `${window.location.origin}`,
+                    })
+                  }
+                  variant="link"
+                >
+                  Log in
+                </Button>
+              ) : (
+                <Button onClick={() => signOut()} variant="link">
+                  Log out
+                </Button>
+              )}
               <Button variant="link">About</Button>
             </div>
           </div>
