@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Header = () => {
@@ -33,7 +34,12 @@ export const Header = () => {
                   Log out
                 </Button>
               )}
-              <Button variant="link">About</Button>
+              <Link href="/">
+                <Button variant="link">Home</Button>
+              </Link>
+              <Link href="/home/about">
+                <Button variant="link">About</Button>
+              </Link>
             </div>
           </div>
         </nav>
