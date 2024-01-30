@@ -18,28 +18,38 @@ export const Header = () => {
               </span>
             </a>
             <div className="flex items-center lg:order-2">
-              {!session ? (
-                <Button
-                  onClick={() =>
-                    signIn("github", {
-                      callbackUrl: `${window.location.origin}`,
-                    })
-                  }
-                  variant="link"
-                >
-                  Log in
-                </Button>
-              ) : (
-                <Button onClick={() => signOut()} variant="link">
-                  Log out
-                </Button>
-              )}
               <Link href="/">
                 <Button variant="link">Home</Button>
               </Link>
-              <Link href="/home/about">
-                <Button variant="link">About</Button>
-              </Link>
+              {!session ? (
+                <>
+                  <Link href="/home/about">
+                    <Button variant="link">About</Button>
+                  </Link>
+                  <Button
+                    onClick={() =>
+                      signIn("github", {
+                        callbackUrl: `${window.location.origin}`,
+                      })
+                    }
+                    variant="link"
+                  >
+                    Log in
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Link href="/users">
+                    <Button variant="link">Users</Button>
+                  </Link>
+                  <Link href="/Books">
+                    <Button variant="link">Books</Button>
+                  </Link>
+                  <Button onClick={() => signOut()} variant="link">
+                    Log out
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         </nav>
