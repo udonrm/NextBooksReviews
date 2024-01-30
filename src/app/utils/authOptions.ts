@@ -18,4 +18,15 @@ export const authOptions = {
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user }) {
+      const userData = await prisma.user.findUnique({
+        where: { id: user.id },
+      });
+      if (session.user) {
+        session.user.introduction = userData?.introduction;
+      }
+      return session;
+    },
+  },
 } satisfies NextAuthOptions;
