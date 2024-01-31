@@ -30,7 +30,7 @@ export const Index = ({ endPointUrl, object, columns }: IndexProps) => {
   return (
     <>
       <Table>
-        <TableCaption>Users List</TableCaption>
+        <TableCaption>{object} List</TableCaption>
         <TableHeader>
           <TableRow>
             {columns.map((column) => (
