@@ -42,7 +42,7 @@ export const Header = () => {
                   <Link href="/users">
                     <Button variant="link">Users</Button>
                   </Link>
-                  <Link href="/Books">
+                  <Link href="/books">
                     <Button variant="link">Books</Button>
                   </Link>
                   <Button onClick={() => signOut()} variant="link">

@@ -4,19 +4,19 @@ import { UserInformation } from "@/app/components/userInformation";
 import { SessionProvider } from "next-auth/react";
 import { Index } from "../components";
 
-const UserIndex = ({ pageProps }) => {
+const BookIndex = ({ pageProps }) => {
   return (
     <>
       <SessionProvider session={pageProps?.session}>
         <Header />
         <UserInformation />
         <Index
-          endPointUrl={`http://localhost:3000/api/user`}
-          object={"users"}
+          endPointUrl={`http://localhost:3000/api/book`}
+          object={"books"}
           columns={[
-            { key: "image", label: "Image" },
-            { key: "name", label: "Name" },
-            { key: "introduction", label: "Introduction" },
+            { key: "userName", label: "user" },
+            { key: "title", label: "Title" },
+            { key: "body", label: "Body" },
           ]}
         />
       </SessionProvider>
@@ -24,4 +24,4 @@ const UserIndex = ({ pageProps }) => {
   );
 };
 
-export default UserIndex;
+export default BookIndex;
