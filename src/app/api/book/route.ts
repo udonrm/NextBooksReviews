@@ -15,7 +15,6 @@ export const GET = async (req: Request, res: NextResponse) => {
   try {
     await main();
     const books = await prisma.book.findMany();
-
     // map関数は非同期処理の結果を含む配列を返すのでPromise.allでPromiseの配列を引数にとる
     const booksWithUserName = await Promise.all(
       books.map(async (book) => {

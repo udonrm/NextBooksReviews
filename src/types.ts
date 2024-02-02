@@ -19,6 +19,7 @@ export type Book = {
   userId: string;
   createdAt: Date;
   updatedAt: Date;
+  userName: string | null;
 };
 
 export type IndexProps = {

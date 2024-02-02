@@ -6,16 +6,24 @@ const prisma = new PrismaClient();
 
 export const GET = async (req: Request, res: NextResponse) => {
   try {
-    const id: string = req.url.split("users/")[1];
+    const id: number = parseInt(req.url.split("book/")[1]);
     await main();
-    const user = await prisma.user.findFirst({
+    const book = await prisma.book.findFirst({
       where: { id },
-      include: {
-        books: true,
+    });
+    const bookCreateUser = await prisma.user.findFirst({
+      where: {
+        id: book?.userId,
       },
     });
-
-    return NextResponse.json({ message: "Success", user }, { status: 200 });
+    const bookWithUserName = {
+      ...book,
+      userName: bookCreateUser?.name,
+    };
+    return NextResponse.json(
+      { message: "Success", bookWithUserName },
+      { status: 200 }
+    );
   } catch (error) {
     return NextResponse.json({ message: "Error", error }, { status: 500 });
   } finally {

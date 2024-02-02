@@ -50,7 +50,7 @@ export const Index = ({ endPointUrl, object, columns, books }: IndexProps) => {
             <TableRow key={target.id}>
               {columns.map((column) => (
                 <TableCell key={column.key}>
-                  <Link href={`${object}/${target.id}`}>
+                  <Link href={`/${object}/${target.id}`}>
                     {column.key === "image" ? (
                       <Avatar>
                         <AvatarImage src={target[column.key]} />
