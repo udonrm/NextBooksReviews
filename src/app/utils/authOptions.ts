@@ -25,6 +25,7 @@ export const authOptions = {
       });
       if (session.user) {
         session.user.introduction = userData?.introduction;
+        session.user.userId = userData?.id;
       }
       return session;
     },

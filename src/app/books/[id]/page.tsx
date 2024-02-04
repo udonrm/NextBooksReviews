@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { Book } from "@/types";
 import Link from "next/link";
 
-const BookDetail = ({ pageProps }) => {
+const BookDetail = () => {
   const { id } = useParams();
   const [book, setBook] = useState<Book>();
 
@@ -28,7 +28,7 @@ const BookDetail = ({ pageProps }) => {
 
   return (
     <>
-      <SessionProvider session={pageProps?.session}>
+      <SessionProvider>
         <Header />
       </SessionProvider>
       <div className="flex justify-center items-center h-96">

@@ -3,10 +3,10 @@ import { Header } from "@/app/components/header";
 import { UserInformation } from "@/app/components/userInformation";
 import { SessionProvider } from "next-auth/react";
 
-const About = ({ pageProps }) => {
+const About = () => {
   return (
     <>
-      <SessionProvider session={pageProps?.session}>
+      <SessionProvider>
         <Header />
         <UserInformation />
         <div className="flex justify-center items-center h-96">

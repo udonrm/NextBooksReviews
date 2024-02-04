@@ -4,10 +4,10 @@ import { UserInformation } from "@/app/components/userInformation";
 import { SessionProvider } from "next-auth/react";
 import { Index } from "../components";
 
-const UserIndex = ({ pageProps }) => {
+const UserIndex = () => {
   return (
     <>
-      <SessionProvider session={pageProps?.session}>
+      <SessionProvider>
         <Header />
         <UserInformation />
         <Index

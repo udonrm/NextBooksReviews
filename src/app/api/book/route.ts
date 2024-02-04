@@ -40,3 +40,18 @@ export const GET = async (req: Request, res: NextResponse) => {
     await prisma.$disconnect();
   }
 };
+
+export const POST = async (req: Request, res: NextResponse) => {
+  try {
+    const { title, body, userId } = await req.json();
+    await main();
+    const book = await prisma.book.create({
+      data: { title, body, userId },
+    });
+    return NextResponse.json({ message: "Success", book }, { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
+  } finally {
+    await prisma.$disconnect;
+  }
+};
