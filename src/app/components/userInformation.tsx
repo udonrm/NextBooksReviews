@@ -9,7 +9,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const UserInformation = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   return (
     <>
       <div className="flex justify-center">

@@ -14,7 +14,7 @@ import { Header } from "@/app/components/header";
 import { Book, User } from "@/types";
 import { Index } from "@/app/components";
 
-const UserDetail = ({ pageProps }) => {
+const UserDetail = () => {
   const { id } = useParams();
   const [user, setUser] = useState<User>();
   const [books, setBooks] = useState<Book[]>();
@@ -37,7 +37,7 @@ const UserDetail = ({ pageProps }) => {
 
   return (
     <>
-      <SessionProvider session={pageProps?.session}>
+      <SessionProvider>
         <Header />
         <div className="flex justify-center">
           <Card className="w-[350px]">

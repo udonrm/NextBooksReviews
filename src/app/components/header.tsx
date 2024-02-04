@@ -1,4 +1,3 @@
-"use client";
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -13,7 +12,8 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Header = () => {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
+
   const { setTheme } = useTheme();
 
   return (
