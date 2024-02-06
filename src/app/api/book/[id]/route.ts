@@ -47,3 +47,18 @@ export const PATCH = async (req: Request, res: NextResponse) => {
     await prisma.$disconnect;
   }
 };
+
+export const DELETE = async (req: Request, res: NextResponse) => {
+  try {
+    const id: number = parseInt(req.url.split("/book/")[1]);
+    await main();
+    const book = await prisma.book.delete({
+      where: { id },
+    });
+    return NextResponse.json({ message: "Success", book }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
+  } finally {
+    await prisma.$disconnect;
+  }
+};

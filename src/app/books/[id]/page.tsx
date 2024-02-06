@@ -13,9 +13,21 @@ import { useEffect, useState } from "react";
 import { Book } from "@/types";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+
+const deleteBook = async (id: number) => {
+  const response = await fetch(`http://localhost:3000/api/book/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.json();
+};
 
 const BookDetail = () => {
   const { id } = useParams();
+  const router = useRouter();
   const [book, setBook] = useState<Book>();
 
   useEffect(() => {
@@ -26,6 +38,11 @@ const BookDetail = () => {
     };
     fetchSingleBook();
   }, [id]);
+
+  const handleDelete = async (id: number) => {
+    await deleteBook(id);
+    router.push("/books");
+  };
 
   return (
     <>
@@ -45,9 +62,20 @@ const BookDetail = () => {
                 {book?.userName}
               </Link>
             </div>
-            <Link href={`${id}/edit`}>
-              <Button variant="link">Edit</Button>
-            </Link>
+            <div className="flex justify-center">
+              <Button
+                variant="link"
+                className="m-3"
+                onClick={() => {
+                  handleDelete(book.id);
+                }}
+              >
+                Delete
+              </Button>
+              <Link href={`${id}/edit`} className="m-3">
+                <Button variant="link">Edit</Button>
+              </Link>
+            </div>
           </CardContent>
         </Card>
       </div>
