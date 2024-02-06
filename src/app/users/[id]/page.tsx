@@ -13,6 +13,8 @@ import { SessionProvider } from "next-auth/react";
 import { Header } from "@/app/components/header";
 import { Book, User } from "@/types";
 import { Index } from "@/app/components";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const UserDetail = () => {
   const { id } = useParams();
@@ -50,6 +52,9 @@ const UserDetail = () => {
                 <AvatarImage src={user?.image || ""} />
                 <AvatarFallback>CN</AvatarFallback>
               </Avatar>
+              <Link href={`${id}/edit`}>
+                <Button variant="link">Edit</Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
