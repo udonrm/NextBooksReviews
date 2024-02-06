@@ -12,6 +12,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Book } from "@/types";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -44,16 +45,19 @@ const BookDetail = () => {
                 {book?.userName}
               </Link>
             </div>
+            <Link href={`${id}/edit`}>
+              <Button variant="link">Edit</Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
-      <Link href="/books">
-        <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center">
+        <Link href="/books">
           <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
             Back
           </button>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </>
   );
 };

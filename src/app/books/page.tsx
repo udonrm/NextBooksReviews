@@ -12,7 +12,15 @@ const BookIndex = () => {
         <Header />
         <UserInformation />
         <div className="m-5 flex justify-center">
-          <BookForm />
+          <BookForm
+            endPointUrl={`http://localhost:3000/api/book`}
+            method={"POST"}
+            defaultValues={{
+              title: "",
+              body: "",
+              userId: "",
+            }}
+          />
         </div>
         <Index
           endPointUrl={`http://localhost:3000/api/book`}
