@@ -1,3 +1,5 @@
+import { Session } from "@prisma/client";
+
 export type ColumnConfig = {
   key: string;
   label: string;
@@ -41,4 +43,9 @@ export type BookForm = {
   endPointUrl: string;
   method: string;
   defaultValues: defaultValues;
+};
+
+export type UserCard = {
+  user: User;
+  id: string;
 };

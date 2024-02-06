@@ -1,5 +1,4 @@
 "use client";
-import { SessionProvider } from "next-auth/react";
 import { Header } from "@/app/components/header";
 import {
   Card,
@@ -46,9 +45,7 @@ const BookDetail = () => {
 
   return (
     <>
-      <SessionProvider>
-        <Header />
-      </SessionProvider>
+      <Header />
       <div className="flex justify-center items-center h-96">
         <Card className="w-[350px]">
           <CardHeader>
