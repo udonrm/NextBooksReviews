@@ -13,6 +13,7 @@ import { Book } from "@/types";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const deleteBook = async (id: number) => {
   const response = await fetch(`http://localhost:3000/api/book/${id}`, {
@@ -25,6 +26,8 @@ const deleteBook = async (id: number) => {
 };
 
 const BookDetail = () => {
+  const { data: session } = useSession();
+
   const { id } = useParams();
   const router = useRouter();
   const [book, setBook] = useState<Book>();
@@ -59,20 +62,24 @@ const BookDetail = () => {
                 {book?.userName}
               </Link>
             </div>
-            <div className="flex justify-center">
-              <Button
-                variant="link"
-                className="m-3"
-                onClick={() => {
-                  handleDelete(book.id);
-                }}
-              >
-                Delete
-              </Button>
-              <Link href={`${id}/edit`} className="m-3">
-                <Button variant="link">Edit</Button>
-              </Link>
-            </div>
+            {session?.user?.userId === book?.userId ? (
+              <div className="flex justify-center">
+                <Button
+                  variant="link"
+                  className="m-3"
+                  onClick={() => {
+                    handleDelete(book.id);
+                  }}
+                >
+                  Delete
+                </Button>
+                <Link href={`${id}/edit`} className="m-3">
+                  <Button variant="link">Edit</Button>
+                </Link>
+              </div>
+            ) : (
+              <div />
+            )}
           </CardContent>
         </Card>
       </div>
