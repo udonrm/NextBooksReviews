@@ -30,3 +30,15 @@ export type IndexProps = {
 };
 
 export type TargetData = Book[] | User[];
+
+export type defaultValues = {
+  title: string;
+  body: string;
+  userId: string;
+};
+
+export type BookForm = {
+  endPointUrl: string;
+  method: string;
+  defaultValues: defaultValues;
+};

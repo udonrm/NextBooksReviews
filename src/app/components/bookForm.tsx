@@ -14,22 +14,20 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useEffect } from "react";
+import { BookForm } from "@/types";
+
 const formSchema = z.object({
   title: z.string().min(1),
   body: z.string().min(1),
   userId: z.string().min(1),
 });
 
-const BookForm = () => {
+const BookForm = ({ endPointUrl, method, defaultValues }: BookForm) => {
   const { data: session } = useSession();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      body: "",
-      userId: "",
-    },
+    defaultValues: defaultValues,
   });
 
   useEffect(() => {
@@ -38,8 +36,8 @@ const BookForm = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      const response = await fetch(`http://localhost:3000/api/book`, {
-        method: "POST",
+      const response = await fetch(endPointUrl, {
+        method: method,
         headers: {
           "Content-Type": "application/json",
         },

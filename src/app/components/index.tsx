@@ -24,7 +24,6 @@ export const Index = ({ endPointUrl, object, columns, books }: IndexProps) => {
           cache: "no-store",
         });
         const data = await res.json();
-
         //ブラケット記法にして変数の参照に対応する
         setTargets(data[object]);
       };

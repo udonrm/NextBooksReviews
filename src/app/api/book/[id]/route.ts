@@ -30,3 +30,20 @@ export const GET = async (req: Request, res: NextResponse) => {
     await prisma.$disconnect();
   }
 };
+
+export const PATCH = async (req: Request, res: NextResponse) => {
+  try {
+    const id: number = parseInt(req.url.split("/book/")[1]);
+    const { title, body } = await req.json();
+    await main();
+    const book = await prisma.book.update({
+      data: { title, body },
+      where: { id },
+    });
+    return NextResponse.json({ message: "Success", book }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error", error }, { status: 500 });
+  } finally {
+    await prisma.$disconnect;
+  }
+};
