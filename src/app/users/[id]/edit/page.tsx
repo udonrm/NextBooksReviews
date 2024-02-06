@@ -1,17 +1,22 @@
 "use client";
 import { Header } from "@/app/components/header";
 import UserForm from "@/app/components/userForm";
-import { SessionProvider } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import { useParams, useRouter } from "next/navigation";
 
 const EditUser = () => {
+  const { id } = useParams();
+  const router = useRouter();
+
+  const { data: session } = useSession();
+  session?.user?.userId !== id ? router.push("/users") : <div />;
+
   return (
     <>
-      <SessionProvider>
-        <Header />
-        <div className="flex justify-center">
-          <UserForm />
-        </div>
-      </SessionProvider>
+      <Header />
+      <div className="flex justify-center">
+        <UserForm />
+      </div>
     </>
   );
 };

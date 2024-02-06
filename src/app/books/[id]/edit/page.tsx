@@ -1,5 +1,4 @@
 "use client";
-import { SessionProvider } from "next-auth/react";
 import { Header } from "@/app/components/header";
 import { useParams } from "next/navigation";
 import BookForm from "@/app/components/bookForm";
@@ -21,21 +20,19 @@ const EditBook = () => {
 
   return (
     <>
-      <SessionProvider>
-        <Header />
-        <div className="flex justify-center">
-          <BookForm
-            key={book?.id}
-            endPointUrl={`http://localhost:3000/api/book/${id}`}
-            method={"PATCH"}
-            defaultValues={{
-              title: book?.title || "",
-              body: book?.body || "",
-              userId: "",
-            }}
-          />
-        </div>
-      </SessionProvider>
+      <Header />
+      <div className="flex justify-center">
+        <BookForm
+          key={book?.id}
+          endPointUrl={`http://localhost:3000/api/book/${id}`}
+          method={"PATCH"}
+          defaultValues={{
+            title: book?.title || "",
+            body: book?.body || "",
+            userId: "",
+          }}
+        />
+      </div>
     </>
   );
 };
